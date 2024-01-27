@@ -318,7 +318,7 @@ void restaurar_copia_de_seguranca() {
   arquivo = fopen(nome_do_arquivo, "r");
 
   while (fgets(linha, sizeof linha, arquivo) != NULL) {
-		resultado = sscanf(linha, "%d,%39[^,],%d,%19[^,],%19[^,],%d|%d,%.2lf,%d,%d,%d",
+		resultado = sscanf(linha, "%d,%39[^,],%d,%19[^,],%19[^,],%d|%d,%lf,%d,%d,%d",
 			&codigo, nome,
 			&tipo_de_cliente, nif,
 			numero_bilhete, &telefone,
@@ -392,7 +392,7 @@ int main()
   			fflush(stdin);
   			printf("\n**************** CADASTRO DO CLIENTE *********************\n\n");
   			printf("Digite o nome: ");
-  			fgets(cliente.nome,40,stdin);
+  			scanf("%[^\n]",cliente.nome);
   			system("cls");
   			printf("Digite o tipo de cliente\n\t[0]- para particular\n\t[1]- para empresa\n");
   			scanf("%d", &cliente.tipo_de_cliente);
@@ -442,7 +442,7 @@ int main()
 
   			printf("\n**************** ABERTURA DE CONTA *********************\n\n");
 
-  			printf("\t[1]-Abrir Conta\n\t[2]-Activar Conta\n\t[3]-Voltar \n");
+  			printf("\t[1]-Abrir Conta\n\t[2]-Activar/Desactivar Conta\n\t[3]-Voltar \n");
   			printf("Escolha \n:");
   			scanf("%d", &opc);
 
@@ -462,11 +462,12 @@ int main()
 
 	  						cliente = clientes[codigo - 1];
 	  					abertura_de_conta(cliente, cliente.tipo_de_cliente);
-	  					sleep(20);
+	  					sleep(5);
 	  					continuar();
 					  	break;
 						}
 					}else{
+                    sleep(5);
 				  	printf("\nCliente nao foi encontrado");
 				  	printf("\nDeseja tentar novamente?\nSim (1)\nNao (0)\n");
 				  	scanf("%d", &deseja_continuar);
